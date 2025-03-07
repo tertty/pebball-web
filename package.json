@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@tailwindcss/vite": "^4.0.9",
     "@types/react-router-dom": "^5.3.3",
