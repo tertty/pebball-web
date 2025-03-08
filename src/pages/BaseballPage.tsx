@@ -25,12 +25,16 @@ const BaseballPage = () => {
     const [gameState, setGameState] = useState(0);
     const websocket: React.RefObject<WebSocket | null> = useRef(null);
 
+    let url = import.meta.env.VITE_DOMAIN!;
+    let port = import.meta.env.VITE_PORT!;
+
     //gen session ID on load
     useEffect(()=>{
         generateSession().then(data => {
             // setSessionId(() => data);
             // startGame(data);
-            websocket.current = new WebSocket("ws://localhost:3000/"+data);
+            // websocket.current = new WebSocket("ws://localhost:3000/"+data);
+            websocket.current = new WebSocket("ws://" + url + ":" + port + "/" + data);
             let payload: WSPayload = {
                 client: 'client',
                 msg: "ping!"
@@ -67,9 +71,9 @@ const BaseballPage = () => {
     async function generateSession() {
         try {
             // const response = await fetch("http://localhost:3000/getID", { cache: 'no-store' });
-            let url = import.meta.env.VITE_DOMAIN!;
-            let port = import.meta.env.VITE_PORT!;
-            const response = await fetch(url + port + "/getID", { cache: 'no-store' });
+            // let url = import.meta.env.VITE_DOMAIN!;
+            // let port = import.meta.env.VITE_PORT!;
+            const response = await fetch("http://" + url + ":" + port + "/getID", { cache: 'no-store' });
             if (!response.ok) {
                 throw new Error(`Response status: ${response.status}`);
             }
