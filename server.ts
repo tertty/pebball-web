@@ -3,6 +3,7 @@ import http from 'http';
 import { WebSocketServer } from 'ws';
 import path from 'path';
 import { testPebbleClient } from './test-pebble';
+import { WSEvent } from './src/types/WSEvent';
 
 const app = express();
 const server = http.createServer(app);
@@ -27,34 +28,14 @@ let store: User = {
     score: 0
 };
 
-// // Handle WebSocket connections
-// wss.on('connection', ws => {
-//     console.log('Client connected');
-  
-//     ws.on('message', (message: string) => {
-//         let packet = JSON.parse(message);
-//         console.log(`Received: ${packet.msg}`);
+let allowCrossDomain = function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    next();
+};
 
-//         // Broadcast the message to all connected clients
-//         wss.clients?.forEach(client => {
-//             if (client !== ws && client.readyState === 1) {
-//             client.send(JSON.stringify({msg: `Broadcast: ${packet.msg}`}));
-//             }
-//         });
-//     });
-  
-//     ws.on('close', () => {
-//       console.log('Client disconnected');
-//     });
-  
-//     ws.on('error', error => {
-//       console.error('WebSocket error:', error);
-//     });
-// });
-
-// spoofing the websocket connection from the pebble
-// remove when connecting pebble
-// testPebbleClient("swung!");
+app.use(allowCrossDomain);
 
 app.get("/getID", (req, res) => {
     console.log("generating session Id...");
@@ -62,21 +43,10 @@ app.get("/getID", (req, res) => {
     console.log("session Id: " + sessId);
     if ( !store.sessId ) {
         startWebSocketServer(sessId);
+        // testPebbleClient();
     }
     res.status(200).json({id: sessId});
 });
-
-// Upgrade HTTP connection to WebSocket
-// server.on('upgrade', (request, socket, head) => {
-//     wss.handleUpgrade(request, socket, head, (ws) => {
-//       wss.emit('connection', ws, request);
-//     });
-// });
-
-// app.listen(port, () => {
-//     console.log("app starting on port: " + port);
-//     console.log("ctrl + c to quit");
-// });
 
 server.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
@@ -102,14 +72,31 @@ function startWebSocketServer(sessId: number) {
     
         ws.on('message', (message: string) => {
             let packet = JSON.parse(message);
-            console.log(`Received: ${packet.msg}`);
+            if ( packet.msg ) {
+                console.log(`Received: ${packet.msg}`);
+            } else {
+                console.log(`Received event: ${packet.event}`);
+            }
 
-            // Broadcast the message to all connected clients
+            // Broadcast the message to all connected clients (the gui)
             wss.clients?.forEach(client => {
                 if (client !== ws && client.readyState === 1) {
-                    client.send(JSON.stringify({msg: `Broadcast: ${packet.msg}`}));
+                    // client.send(JSON.stringify({msg: `Broadcast: ${packet.msg}`}));
+                    if ( packet.msg ) {
+                        client.send(JSON.stringify({msg: `Broadcast: ${packet.msg}`}));
+                    } else {
+                        client.send(JSON.stringify(packet));
+                    }
                 }
             });
+        });
+
+        ws.on('open', ()=>{
+            let connectEvent: WSEvent = {
+                event: 16,
+                ackd_event: 16
+            };
+            ws.send(JSON.stringify(connectEvent));
         });
     
         ws.on('close', () => {
@@ -128,4 +115,7 @@ function startWebSocketServer(sessId: number) {
           wss.emit('connection', ws, request);
         });
     });
+
+    console.log("starting faked pebble client");
+    testPebbleClient(sessId);
 }

@@ -1,7 +1,8 @@
 #root {
   max-width: 1280px;
+  height: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
 
@@ -40,3 +41,42 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Button component custom styles */
+.hover-border-btn{
+  transition-property: color, line-height;
+  transition-delay: 150ms;
+  transition-duration: 300ms;
+}
+
+.hover-border-btn:hover{
+  color:rgba(215, 1, 112, 0.772);
+  line-height: 1;
+  transition-property: color, line-height;
+  transition-delay: 100ms;
+  transition-duration: 300ms;
+}
+
+/* .hover-border-btn::after{
+  content: '';
+  width: 0.2em;
+  height: 100%;
+  background-color: #D70170;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px;
+  transition-property: height, width;
+  transition-delay: 300ms, 0ms;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
+
+.hover-border-btn:hover::after{
+  height: 0.2em;
+  width: 100%;
+  transition-property: height, width;
+  transition-delay: 0ms, 300ms;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+} */
