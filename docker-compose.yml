@@ -1,0 +1,8 @@
+services:
+  pebball-web-server:
+    image: pebball-web-image
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_DOMAIN: "localhost"
+      VITE_PORT: 3000
