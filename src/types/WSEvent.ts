@@ -4,4 +4,5 @@ export interface WSEvent {
     wrist_position?: "L" | "R" | string,
     pitch_reach_time?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | number,
     swing_epoch?: Date | number
+    id?: string
 }
