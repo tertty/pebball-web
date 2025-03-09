@@ -89,7 +89,12 @@ function startWebSocketServer(sessId: number) {
                     }
                 }
                 if ( client == ws && packet.id == 'pebble') {
-                    client.send(JSON.stringify(packet));
+                    // client.send(JSON.stringify(packet));
+                    if (packet.event == 19) {
+                        client.send(JSON.stringify({event: 20, pitch_reach_time: Math.floor(Math.random()*(8-2+1)+2)}));
+                    } else {
+                        client.send(JSON.stringify({event: "ACK", ackd_event: packet.event}));
+                    }
                 }
             });
         });
