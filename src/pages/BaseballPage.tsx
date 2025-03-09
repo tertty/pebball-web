@@ -147,8 +147,8 @@ const BaseballPage = () => {
     return (
         <>
             <div className="w-[100vw] h-[100vh] flex flex-col">
-                <div className="flex justify-end me-1">
-                    <div className="spacer me-auto"></div>
+                <div className="flex justify-center">
+                    <div className="spacer w-[59px] ms-2"></div>
                     <h1 className="ms-auto me-auto">Pebball!</h1>
                     <Button to="/" text="Home" light={false}/>
                 </div>
