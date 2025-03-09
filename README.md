@@ -11,7 +11,7 @@ To build the image, run the following command in this directory:
 `docker build -t pebball-web-image .`
 
 then run the container using the image:
-`docker container run -d -p 3000:3000 pebball-web-image`
+`docker container run -d -p 3000:3000 --env-file .env pebball-web-image`
 
 To view the console logs from within the container:
 `docker logs -f <container_name_or_id>`

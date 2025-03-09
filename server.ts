@@ -88,6 +88,9 @@ function startWebSocketServer(sessId: number) {
                         client.send(JSON.stringify(packet));
                     }
                 }
+                if ( client == ws && packet.id == 'pebble') {
+                    client.send(JSON.stringify(packet));
+                }
             });
         });
 
@@ -117,5 +120,5 @@ function startWebSocketServer(sessId: number) {
     });
 
     console.log("starting faked pebble client");
-    testPebbleClient(sessId);
+    // testPebbleClient(sessId);
 }
