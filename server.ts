@@ -125,5 +125,5 @@ function startWebSocketServer(sessId: number) {
     });
 
     console.log("starting faked pebble client");
-    testPebbleClient(sessId);
+    // testPebbleClient(sessId);
 }
