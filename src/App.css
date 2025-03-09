@@ -80,3 +80,43 @@
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;
 } */
+
+#get_into_position {
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/Get_Into_Position.png");
+  background-position: center;
+  background-size: auto;
+}
+
+#waiting_for_throw {
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/Waiting_For_Pitch.png");
+  background-position: center;
+  background-size: auto;
+}
+
+#pitch_thrown {
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/Pitch_Thrown.png");
+  background-position: center;
+  background-size: auto;
+}
+
+#ball_hit {
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/Ball_Hit.png");
+  background-position: center;
+  background-size: auto;
+}
+
+#ball_miss {
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/Ball_Missed.png");
+  background-position: center;
+  background-size: auto;
+}

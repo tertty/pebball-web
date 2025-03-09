@@ -7,8 +7,7 @@ interface PitchThrownProps {
 const PitchThrown: FunctionComponent<PitchThrownProps> = () => {
     return ( 
         <>
-            <div>
-                <p>pitch has been thrown!</p>
+            <div id="pitch_thrown">
             </div>
         </> 
     );

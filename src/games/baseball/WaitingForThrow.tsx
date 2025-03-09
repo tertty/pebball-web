@@ -6,7 +6,7 @@ interface WaitingForThrowProps {
  
 const WaitingForThrow: FunctionComponent<WaitingForThrowProps> = () => {
     return ( 
-        <><div><h3>Waiting for throw...</h3></div></> 
+        <><div id="waiting_for_throw"></div></> 
     );
 }
  

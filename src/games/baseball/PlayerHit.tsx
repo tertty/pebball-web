@@ -17,7 +17,7 @@ const PlayerHit: FunctionComponent<PlayerHitProps> = ({callback, updateGameState
     },[]);
     return ( 
         <>
-            <div><h3>Boom! Nice hit!</h3></div>
+            <div id="ball_hit"></div>
         </>
     );
 }

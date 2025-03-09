@@ -146,25 +146,27 @@ const BaseballPage = () => {
 
     return (
         <>
-            <div className="w-[100vw] h-[100vh]">
+            <div className="w-[100vw] h-[100vh] flex flex-col">
                 <div className="flex justify-end me-1">
+                    <div className="spacer me-auto"></div>
+                    <h1 className="ms-auto me-auto">Pebball!</h1>
                     <Button to="/" text="Home" light={false}/>
                 </div>
-                <h1>baseball page</h1>
                 <p>score: {score}</p>
-                { (gameState == 0 || gameState == 17) && <div>
+                { (gameState == 0 || gameState == 17) && <div className="mt-auto mb-auto">
                     <h2>Session ID: {sessionId}</h2>
                     <p>Set this session Id on your pebble to get started!</p>
-                </div>}
+                </div>} 
                 { gameState == 18 && <GetIntoPosition />}
                 {/* { (isInPosition || gameState == 19) && <WaitingForThrow />} */}
                 { (gameState == 19) && <WaitingForThrow />}
                 {/* { pitchThrown && <PitchThrown />} */}
-                { (gameState == 20 || gameState == 21 || gameState == 22) && <PitchThrown />}
+                {/* { (gameState == 20 || gameState == 21 || gameState == 22) && <PitchThrown />} */}
+                { (gameState == 20) && <PitchThrown />}
                 {/* { playerHit && <PlayerHit callback={playerDidHit} updateGameState={updateGameState} pitchWasThrown={pitchWasThrown} />} */}
-                { gameState == 21 && <PlayerHit callback={playerDidHit} updateGameState={updateGameState} pitchWasThrown={pitchWasThrown} />}
+                { (gameState == 21) && <PlayerHit callback={playerDidHit} updateGameState={updateGameState} pitchWasThrown={pitchWasThrown} />}
                 {/* { playerMiss && <PlayerMissed callback={playerDidMiss} updateGameState={updateGameState} pitchWasThrown={pitchWasThrown} />} */}
-                { gameState == 22 && <PlayerMissed callback={playerDidMiss} updateGameState={updateGameState} pitchWasThrown={pitchWasThrown} />}
+                { (gameState == 22) && <PlayerMissed callback={playerDidMiss} updateGameState={updateGameState} pitchWasThrown={pitchWasThrown} />}
             </div>
         </>
     );

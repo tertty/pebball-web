@@ -7,7 +7,7 @@ interface GetIntoPositionProps {
 const GetIntoPosition: FunctionComponent<GetIntoPositionProps> = () => {
     return ( 
     <>
-        <div>Get into batting position!</div>
+        <div id="get_into_position"></div>
     </> 
     );
 }

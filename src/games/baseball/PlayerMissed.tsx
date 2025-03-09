@@ -16,7 +16,7 @@ const PlayerMissed: FunctionComponent<PlayerMissedProps> = ({callback, updateGam
     },[]);
     return ( 
         <>
-            <div><h3>Missed!</h3></div>
+            <div id="ball_miss"></div>
         </> 
     );
 }
