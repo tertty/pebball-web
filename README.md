@@ -1,6 +1,8 @@
 # Pebball! GUI & Web Server
 GUI and Web Server element of the Pebball! tech demo.
 
+Pebball! is a baseball inspired interactive, motion controlled game concept for the Pebble Smartwatch. When paired with the Pebball! Web Server, this Watchapp acts as a controller for an endless batting cage reaction mini-game.
+
 ## Building Docker Image and Self-hosting
 The Dockerfile is set up to automatically start the web server and serve up the client when building the image.
 
